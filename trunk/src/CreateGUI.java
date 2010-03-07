@@ -1,59 +1,68 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.net.URL;
+
+import javax.swing.*;
 import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-public class CreateGUI extends Thread implements KeyListener {
+public class CreateGUI extends JFrame{
 	
-	private JFrame frame;
-	private JPanel panel;
-	
-	public JFrame getFrame(){
-		return frame;
-	}
-	public JPanel getPanel(){
-		return panel;
-	
-	frame = new JFrame(gConf);
-	frame.setFocusableWindowState(true);
-	frame.setFocusable(true);
-	frame.setSize(1024,768);
-	frame.requestFocus();
-	frame.addKeyListener(this);
-	frame.setUndecorated(true);
-	frame.setIgnoreRepaint(true);
-	frame.setBackground(Color.WHITE);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	panel = new JPanel();
-	frame.add(panel);
+	public static void main(String[] args) throws InterruptedException{
+		runThisShit();
 	}
 	
-	public void keyPressed(KeyEvent e) {
-		switch(e.getKeyCode()){
-		case KeyEvent.VK_DOWN:
-			break;
-		case KeyEvent.VK_UP:
-			break;
-		case KeyEvent.VK_LEFT:
-			break;
-		case KeyEvent.VK_RIGHT:
-			break;
-		case KeyEvent.VK_Q:
-			break;
-		case KeyEvent.VK_H:
-			break;
-		}
+	public static void runThisShit() throws InterruptedException{
+		CreateGUI GUI = new CreateGUI();
+		GUI.setVisible(true);
+		GUI.setFocusable(true);
+		GUI.repaint();
 		
-			
+		
+		Arrow rightarrow = new Arrow();
+		JLayeredPane panel = new JLayeredPane();
+		panel.setSize(1000, 600);
+		panel.setVisible(true);
+		panel.setLocation(0, 0);
+		panel.add(rightarrow);
+		panel.repaint();
+		GUI.getContentPane().add(panel);
+		
+		for(int i=0;i<100;i++){
+			Thread.sleep(20);
+			rightarrow.setYpos(i);
+		}
 	}
-	public void keyReleased(KeyEvent e) {
-	}
+	
+	private ImageIcon background = new ImageIcon("arrow_down.jpg");
+	private Image i = background.getImage();
+	private Container cp; // our contentpane
 
-	public void keyTyped(KeyEvent e) {
+	
+	public CreateGUI(){
+		this.setTitle("");
+		this.setSize(800, 600);
+		this.setLocation(300, 100);
+		this.setVisible(true);
+		this.repaint();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		cp = getContentPane();
+		cp.setBackground(Color.black);
 	}
+	
+	//Where the images are initialized:
+	
+	
 
 }
