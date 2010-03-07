@@ -1,22 +1,35 @@
+
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JLayeredPane;
 
-public class Arrow{
+public class Arrow extends JLayeredPane{
+	private Image arrowImage;
+
+	//private final Direction direction;
+
+	public enum Direction {LEFT, UP, DOWN, RIGHT} 
 	
-	private String direction;
-	
-	//Constructor for the arrow class
-	public Arrow(String direction){
-		this.direction = direction;
+	public Arrow(){
+		try {
+			arrowImage =ImageIO.read(new File("images/arrow_down.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		this.setSize(100, 50);
+		this.setVisible(true);
+		this.setLocation(0, 0);
+		this.repaint();
+	}
+	public void setYpos(int posY){
+		this.setLocation(0, posY);
 	}
 	
-	//return a score of how good your hitbox were
-	public int getScore(){
-		return 0;
+	public void paint(Graphics g) {
+		g.drawImage(arrowImage, 0,0,100,100,null);
 	}
-
-	
-}
-
+ }
 
