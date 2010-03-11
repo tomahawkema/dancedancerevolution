@@ -1,31 +1,31 @@
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+
 
 
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 
 public class CreateGUI extends JFrame implements KeyListener, ActionListener{
 	
 	private Container cp;
-	
+		
 	public CreateGUI(){
 		this.setTitle("Dance Dance Revolution - 201B Edition");
 		this.setSize(800, 600);		 	// sets the size of the windows
 		this.setLocation(300, 100); 	// where it appears on the screen at start-up
 		this.setVisible(true);
-		//this.repaint();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setFocusable(false);
 		//this.addKeyListener(this); denne skal være i Arrow mest sannsynlig, tror jeg
 		cp = getContentPane();
-		//cp.setBackground(Color.red);
+		cp.setBackground(Color.yellow);
+		 
+
 	}
 	
 	@Override
@@ -56,6 +56,6 @@ public class CreateGUI extends JFrame implements KeyListener, ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		//System.out.println("balle");
+	
 	}
 }

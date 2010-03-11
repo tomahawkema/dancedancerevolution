@@ -9,11 +9,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JLayeredPane;
 import java.util.*;
+import javax.swing.Timer;
 
 public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	
 	protected Image arrowImage;
 	protected int xPos;
+	private Timer timer;
 	//protected Timer timer;
 
 	public enum Direction{
@@ -46,15 +48,20 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		timer = new Timer(5, this);
+		timer.setInitialDelay(5);
+		timer.start();
+		
 		this.setFocusable(true);
 		this.addKeyListener(this);
 		this.setSize(100, 100);
 		this.setVisible(true);
-		this.setLocation(xPos, 500);
+		this.setLocation(xPos, 700);
 	}
 	
-	public int setYpos(){
-		return this.getYpos();
+	public void setYpos(int decrease){
+		this.setLocation(xPos, getYpos()+decrease);
 	}
 	
 	public int getYpos(){
@@ -63,9 +70,8 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	
 	
 	public void paint(Graphics g) {
-		g.drawImage(arrowImage, xPos, setYpos(), null);
+		g.drawImage(arrowImage, xPos, getY(), null);
 		//super.paint(g); //WTF?
-		System.out.println("hallo");
 	}
 
 	@Override
@@ -101,7 +107,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		setYpos(3);
 	}
  }
 

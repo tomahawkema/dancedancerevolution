@@ -1,3 +1,6 @@
+import javax.swing.JButton;
+import javax.swing.JLayeredPane;
+
 
 public class Runner extends Thread {
 
@@ -12,16 +15,21 @@ public class Runner extends Thread {
 			Arrow up = new Arrow(Arrow.Direction.UP);
 			Arrow down = new Arrow(Arrow.Direction.DOWN);
 			Arrow right = new Arrow(Arrow.Direction.RIGHT);
-
-
-			Panel panel = new Panel();
-					
-			panel.setSize(800, 600);
-			panel.setLocation(0, 0);			
-			panel.add(right, new Integer(2));
-	
 			
-			gui.getContentPane().add(panel);
+//			JLayeredPane panel = new JLayeredPane();
+//			panel.setSize(800, 600);
+//			panel.setLocation(500, 500);
+//			panel.setVisible(true);
+//			panel.setFocusable(true);
+//			panel.setOpaque(true);
+//			panel.add(right);
+//			gui.getContentPane().add(panel);
+//			
+	
+			gui.add(left);
+			
+			
+			//gui.getContentPane().add(panel);
 			
 			//gui.add(panel);
 			
