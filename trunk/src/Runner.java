@@ -17,8 +17,18 @@ public class Runner extends Thread {
 			Arrow up = new Arrow(Arrow.Direction.UP);
 			Arrow down = new Arrow(Arrow.Direction.DOWN);
 			Arrow right = new Arrow(Arrow.Direction.RIGHT);
-
+	
+			JButton knapp = new JButton("DETTE ER EN SABLA BRA KNAPP");
+			knapp.setSize(300, 20);
+			knapp.setLocation(400, 400);
+			
+			LoadMP3 load = new LoadMP3();
+			load.setLocation(600,100);
+			load.setSize(100,100);
+			
 			JLayeredPane panel = new JLayeredPane();
+			panel.add(load);
+			panel.add(knapp);
 			panel.setSize(800, 600);
 			panel.add(right);
 			panel.add(left);

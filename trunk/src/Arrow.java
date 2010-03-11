@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JLayeredPane;
-import java.util.*;
 import javax.swing.Timer;
 
 public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
@@ -49,7 +48,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 			e.printStackTrace();
 		}
 	
-		timer = new Timer(1, this);
+		timer = new Timer(50, this);
 		timer.setInitialDelay(5);
 		timer.start();
 		
