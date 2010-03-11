@@ -48,8 +48,8 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		timer = new Timer(5, this);
+	
+		timer = new Timer(1, this);
 		timer.setInitialDelay(5);
 		timer.start();
 		
@@ -58,19 +58,20 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 		this.setSize(100, 100);
 		this.setVisible(true);
 		this.setLocation(xPos, 700);
+		this.setEnabled(true);
 	}
 	
 	public void setYpos(int decrease){
-		this.setLocation(xPos, getYpos()+decrease);
+		this.setLocation(getLocation().x, getLocation().y-decrease);
 	}
 	
 	public int getYpos(){
 		return this.getY();
 	}
-	
-	
+		
 	public void paint(Graphics g) {
-		g.drawImage(arrowImage, xPos, getY(), null);
+		g.drawImage(arrowImage, 0, 0, null);
+		System.out.println(getY());
 		//super.paint(g); //WTF?
 	}
 
@@ -107,7 +108,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		setYpos(3);
+		this.setLocation(getLocation().x, getLocation().y-10);
 	}
  }
 

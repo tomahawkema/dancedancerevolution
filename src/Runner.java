@@ -11,52 +11,26 @@ public class Runner extends Thread {
 	public void run(){
 		try {
 			CreateGUI gui = new CreateGUI();
+			gui.setFocusable(false);
+			
 			Arrow left = new Arrow(Arrow.Direction.LEFT);
 			Arrow up = new Arrow(Arrow.Direction.UP);
 			Arrow down = new Arrow(Arrow.Direction.DOWN);
 			Arrow right = new Arrow(Arrow.Direction.RIGHT);
-			
-//			JLayeredPane panel = new JLayeredPane();
-//			panel.setSize(800, 600);
-//			panel.setLocation(500, 500);
-//			panel.setVisible(true);
-//			panel.setFocusable(true);
-//			panel.setOpaque(true);
-//			panel.add(right);
-//			gui.getContentPane().add(panel);
-//			
-	
-			gui.add(left);
-			
-			
-			//gui.getContentPane().add(panel);
-			
-			//gui.add(panel);
-			
-		//	gui.add(left);
-//			gui.add(up);
-//			gui.add(down);
-//			gui.add(right);
-//			
-		
+
+			JLayeredPane panel = new JLayeredPane();
+			panel.setSize(800, 600);
+			panel.add(right);
+			panel.add(left);
+			panel.add(up);
+			panel.add(down);
+			gui.getContentPane().add(panel);
+
 			left.revalidate();
 			up.revalidate();
 			down.revalidate();
 			right.revalidate();
-		
 			
-//			JLayeredPane panel = new JLayeredPane();
-//			panel.setSize(800, 600);
-//			panel.setVisible(true); //denne har jo ikke en dritt å si tydeligvis
-//			panel.setLocation(0, 0);
-//			panel.add(up_arrow, 2);
-//			panel.setOpaque(true);
-//			panel.repaint();
-//			//panel.setFocusable(false);
-			
-//			gui.getContentPane().add(up_arrow);
-			
-
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
