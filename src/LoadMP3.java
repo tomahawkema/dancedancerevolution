@@ -18,6 +18,7 @@ public class LoadMP3 extends JPanel implements ActionListener {
         super(new BorderLayout());
       
         fc = new JFileChooser();
+        fc.setFileFilter(new FilterFiles());
         openButton = new JButton("Find mp3...");
         openButton.addActionListener(this);
 
