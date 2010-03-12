@@ -1,6 +1,7 @@
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
-
+import ddf.minim.*;
+import ddf.minim.analysis.*;
 
 public class Runner extends Thread {
 
@@ -8,6 +9,11 @@ public class Runner extends Thread {
 		(new Thread(new Runner())).start();
 	}
 
+
+	//BeatDetect beat = new BeatDetect();
+	//AudioPlayer player = new AudioPlayer();
+	//AudioRecordingStream stream = new AudioRecordingStream();
+	
 	public void run(){
 		try {
 			CreateGUI gui = new CreateGUI();
@@ -24,7 +30,7 @@ public class Runner extends Thread {
 			
 			LoadMP3 load = new LoadMP3();
 			load.setLocation(600,100);
-			load.setSize(100,100);
+			load.setSize(100,20);
 			
 			JLayeredPane panel = new JLayeredPane();
 			panel.add(load);
