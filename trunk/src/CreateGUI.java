@@ -21,9 +21,10 @@ public class CreateGUI extends JFrame implements KeyListener, ActionListener{
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setFocusable(false);
+		this.setResizable(false);
 		//this.addKeyListener(this); denne skal være i Arrow mest sannsynlig, tror jeg
 		cp = getContentPane();
-		cp.setBackground(Color.yellow);
+		cp.setBackground(Color.red);
 		 
 
 	}

@@ -107,7 +107,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		this.setLocation(getLocation().x, getLocation().y-10);
+		this.setLocation(getLocation().x, getLocation().y-40);
 	}
  }
 
