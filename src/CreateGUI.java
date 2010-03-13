@@ -10,53 +10,19 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
-public class CreateGUI extends JFrame implements KeyListener, ActionListener{
+public class CreateGUI extends JFrame{
 	
 	private Container cp;
 		
 	public CreateGUI(){
+		this.setFocusable(false);
 		this.setTitle("Dance Dance Revolution - 201B Edition");
 		this.setSize(800, 600);		 	// sets the size of the windows
 		this.setLocation(300, 100); 	// where it appears on the screen at start-up
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setFocusable(false);
 		this.setResizable(false);
-		//this.addKeyListener(this); denne skal være i Arrow mest sannsynlig, tror jeg
 		cp = getContentPane();
-		cp.setBackground(Color.red);
-		 
-
-	}
-	
-	@Override
-	public void keyPressed(KeyEvent e) {
-		/*switch(e.getKeyCode()){
-			case KeyEvent.VK_LEFT:
-				System.out.println("Trykker venstre!");
-				break;
-			case KeyEvent.VK_UP:
-				System.out.println("Trykker opp!");
-				break;
-			case KeyEvent.VK_DOWN:
-				System.out.println("Trykker ned!");
-				break;
-			case KeyEvent.VK_RIGHT:
-				System.out.println("Trykker høyre!");
-				break;
-		}*/
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-	
+		cp.setBackground(Color.black);
 	}
 }
