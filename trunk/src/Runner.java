@@ -1,3 +1,5 @@
+import java.awt.event.KeyListener;
+
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import ddf.minim.*;
@@ -8,11 +10,6 @@ public class Runner extends Thread {
 	public static void main(String[] args) {
 		(new Thread(new Runner())).start();
 	}
-
-
-	//BeatDetect beat = new BeatDetect();
-	//AudioPlayer player = new AudioPlayer();
-	//AudioRecordingStream stream = new AudioRecordingStream();
 	
 	public void run(){
 		try {
@@ -20,9 +17,13 @@ public class Runner extends Thread {
 			gui.setFocusable(false);
 			
 			Arrow left = new Arrow(Arrow.Direction.LEFT);
+			Thread.sleep(2000);
 			Arrow up = new Arrow(Arrow.Direction.UP);
+			Thread.sleep(2000);
 			Arrow down = new Arrow(Arrow.Direction.DOWN);
+			Thread.sleep(2000);
 			Arrow right = new Arrow(Arrow.Direction.RIGHT);
+
 	
 			JButton knapp = new JButton("DETTE ER EN SABLA BRA KNAPP");
 			knapp.setSize(300, 20);
@@ -33,6 +34,7 @@ public class Runner extends Thread {
 			load.setSize(100,20);
 			
 			JLayeredPane panel = new JLayeredPane();
+			panel.setFocusable(false);
 			panel.add(load);
 			panel.add(knapp);
 			panel.setSize(800, 600);
@@ -40,6 +42,7 @@ public class Runner extends Thread {
 			panel.add(left);
 			panel.add(up);
 			panel.add(down);
+			
 			gui.getContentPane().add(panel);
 
 			left.revalidate();

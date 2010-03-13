@@ -2,6 +2,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
@@ -22,6 +23,9 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	}
 			
 	public Arrow(Direction dir) throws InterruptedException{
+		//trying to get focus so keylistener will work
+		this.addKeyListener(this);
+				
 		try {
 			switch(dir){
 	    		case LEFT:
@@ -48,12 +52,10 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 			e.printStackTrace();
 		}
 	
-		timer = new Timer(50, this);
+		timer = new Timer(20, this);
 		timer.setInitialDelay(5);
 		timer.start();
 		
-		this.setFocusable(true);
-		this.addKeyListener(this);
 		this.setSize(100, 100);
 		this.setVisible(true);
 		this.setLocation(xPos, 700);
@@ -68,10 +70,19 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 		return this.getY();
 	}
 		
+	public void setFocusParameters(){
+		this.setRequestFocusEnabled(true);
+		this.setFocusable(true);
+		this.addKeyListener(this);
+		this.requestFocus();
+		this.requestFocusInWindow();
+	}
+	
 	public void paint(Graphics g) {
 		g.drawImage(arrowImage, 0, 0, null);
-		System.out.println(getY());
-		//super.paint(g); //WTF?
+		this.requestFocus(); //this is a terrible way of getting focus
+//		System.out.println(getY());
+//		super.paint(g); //WTF?
 	}
 
 	@Override
@@ -79,6 +90,9 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 		switch(e.getKeyCode()){
 			case KeyEvent.VK_LEFT:
 				System.out.println("Trykker venstre!");
+				System.out.println(xPos);
+				System.out.println("DU TRYKKA SÅ LANGT UNNA PERFEKT: " + getY());
+				this.arrowImage = null;
 				break;
 			case KeyEvent.VK_UP:
 				System.out.println("Trykker opp!");
@@ -90,24 +104,27 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 				System.out.println("Trykker høyre!");
 				break;
 		}
+//		this.removeKeyListener(this); //remove listening to this object
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		this.setLocation(getLocation().x, getLocation().y-40);
+		this.setLocation(getLocation().x, getLocation().y-1);
+		if(getLocation().y<-100){
+//			this.removeKeyListener(this); //remove listening to this object
+			this.remove(this);
+		}
 	}
  }
 
