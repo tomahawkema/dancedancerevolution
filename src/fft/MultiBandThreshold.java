@@ -7,7 +7,7 @@ import java.util.List;
 public class MultiBandThreshold 
 
 {
-	public static final String FILE = "mp3s/jazz.mp3";
+	public static final String FILE = "mp3s/falling.mp3";
 	public static final int HOP_SIZE = 512;
 	public static final int HISTORY_SIZE = 50;
 	public static final float[] multipliers = { 2f, 2f, 2f };
@@ -57,6 +57,6 @@ public class MultiBandThreshold
 			plot.plot( thresholds.get(i), 1, -0.6f * (bands.length / 2 - 2) + i, true, Color.green );
 		}
 		
-		//new PlaybackVisualizer( plot, HOP_SIZE, new MP3Decoder( new FileInputStream( FILE ) ) );
+		new PlaybackVisualizer( plot, HOP_SIZE, new MP3Decoder( new FileInputStream( FILE ) ) );
 	}
 }

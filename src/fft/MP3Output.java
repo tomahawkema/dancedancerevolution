@@ -19,25 +19,17 @@ public class MP3Output extends Thread
 
 	public void run() {
 		AudioDevice device = null;
-		try {
-			device = new AudioDevice( );
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		MP3Decoder decoder = null;
 		try {
+			device = new AudioDevice( );
 			decoder = new MP3Decoder( new FileInputStream( filename ) );
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		float[] samples = new float[1024];
-		while( decoder.readSamples( samples ) > 0 )
-		{
+		
+		while( decoder.readSamples( samples ) > 0 ){
 			device.writeSamples( samples );
 		}
 	}
