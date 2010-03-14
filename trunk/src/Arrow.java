@@ -79,7 +79,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	}
 	
 	public void paint(Graphics g) {
-		if(this.getY()<600 && this.getY()> -100)
+//		if(this.getY()<600 && this.getY()> -100)
 			g.drawImage(arrowImage, 0, 0, null);
 		this.requestFocus(); //this is a terrible way of getting focus
 //		System.out.println(getY());

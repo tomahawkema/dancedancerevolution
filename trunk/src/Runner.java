@@ -12,39 +12,30 @@ public class Runner extends Thread {
 		(new Thread(new Runner())).start();
 	}
 	
+	public static CreateGUI gui;
+	public static JLayeredPane panel;
+	
 	public void run(){
 		try {
-			CreateGUI gui = new CreateGUI();
+			gui = new CreateGUI();
 			gui.setFocusable(false);
 			
-			List<Float> peaks = new Threshold().getPeaks();
-			
-			JLayeredPane panel = new JLayeredPane();
+			panel = new JLayeredPane();
 			panel.setFocusable(false);			
 			
-			System.out.println("HER SKAL DET KOMME UT NOE BRAAA:");
-			for( int i = 0; i < peaks.size() - 1; i++ ){
-//		    	System.out.println(peaks.get(i));
-				if(peaks.get(i)>50){
-//					System.out.println(i);
-//					System.out.println(peaks.get(i));
-					float f = peaks.get(i);
-					panel.add(new Arrow((int)f%4, i*3));
-				}
-			}
-			System.out.println("PEAKS SIZE I RUNNER: " + peaks.size());
-				
-			
-//			JButton knapp = new JButton("DETTE ER EN SABLA BRA KNAPP");
-//			knapp.setSize(300, 20);
-//			knapp.setLocation(400, 400);
+			JButton knapp = new JButton("DETTE ER EN SABLA BRA KNAPP");
+			knapp.setSize(300, 20);
+			knapp.setLocation(400, 400);
+			knapp.setVisible(true);
+			knapp.requestFocus();
+			knapp.revalidate();
 //			
 			LoadMP3 load = new LoadMP3();
 			load.setLocation(600,100);
 			load.setSize(100,20);
-//			
-//			panel.add(load);
-//			panel.add(knapp);
+			
+			panel.add(load);
+			panel.add(knapp);
 			panel.setSize(800, 600);
 //			panel.add(right);
 //			panel.add(left);
@@ -52,20 +43,21 @@ public class Runner extends Thread {
 //			panel.add(down);
 			
 			gui.getContentPane().add(panel);
-
+			knapp.revalidate();
+			load.revalidate();
+			
 //			left.revalidate();
 //			up.revalidate();
 //			down.revalidate();
 //			right.revalidate();
 			
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public static JLayeredPane getPanel(){
+		return panel;
 	}
 }
