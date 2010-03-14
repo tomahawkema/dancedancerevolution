@@ -37,10 +37,11 @@ public class PlaybackVisualizer
 				startTime = System.nanoTime();
 			float elapsedTime = (System.nanoTime()-startTime)/1000000000.0f;
 			int position = (int)(elapsedTime * (44100/samplesPerPixel));
+			System.out.println(position);
 			plot.setMarker( position, Color.white );
 			i++;
-			if(samples[i] > 0.15)
-				System.out.println("hei");
+//			if(samples[i] > 0.15)
+//				System.out.println("hei");
 			Thread.sleep(20); // this is needed or else swing has no chance repainting the plot!
 		}
 	}
