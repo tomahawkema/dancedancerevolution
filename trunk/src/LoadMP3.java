@@ -52,6 +52,7 @@ public class LoadMP3 extends JPanel implements ActionListener{
 		
 		float[] samples = new float[1024];
 		
+		//TRYING TO LOAD THE MP3 HERE!
 		try {
 			(new MP3Output(filename)).start();
 		} catch (Exception e1) {

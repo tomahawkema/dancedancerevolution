@@ -52,7 +52,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 			e.printStackTrace();
 		}
 	
-		timer = new Timer(80, this);
+		timer = new Timer(100, this);
 		timer.setInitialDelay(5);
 		timer.start();
 		
@@ -79,7 +79,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	}
 	
 	public void paint(Graphics g) {
-//		if(this.getY()<600 && this.getY()> -100)
+		if(this.getY()<600 && this.getY()> -100)
 			g.drawImage(arrowImage, 0, 0, null);
 		this.requestFocus(); //this is a terrible way of getting focus
 //		System.out.println(getY());
@@ -126,7 +126,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		this.setLocation(getLocation().x, getLocation().y-5);
+		this.setLocation(getLocation().x, getLocation().y-10);
 		if(getLocation().y<-100){
 //			this.removeKeyListener(this); //remove listening to this object
 			this.remove(this);

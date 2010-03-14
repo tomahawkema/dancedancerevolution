@@ -71,7 +71,8 @@ public class Threshold
             peaks.add( prunnedSpectralFlux.get(i) );
          else
             peaks.add( (float)0 );
-         System.out.println("PEAKS FRA THRESHOLD: " + peaks.get(i));
+         if(peaks.get(i) != 0.0)
+        	 System.out.println("PEAKS FRA THRESHOLD: " + peaks.get(i));
       }
       System.out.println("PEAKS SIZE I RUNNER: " + peaks.size());
    
