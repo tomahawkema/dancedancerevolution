@@ -6,8 +6,9 @@ import javax.swing.filechooser.*;
 
 import fft.AudioDevice;
 import fft.MP3Decoder;
+import fft.MP3Output;
 
-public class LoadMP3 extends JPanel implements ActionListener {
+public class LoadMP3 extends JPanel implements ActionListener{
    
 	static private final String newline = "\n";
     JButton openButton;
@@ -42,6 +43,7 @@ public class LoadMP3 extends JPanel implements ActionListener {
         MP3Decoder decoder = null;
         try {
 			device = new AudioDevice();
+			new GenerateArrowPattern(filename);
 			decoder = new MP3Decoder(new FileInputStream( filename /*"mp3s/jazz.mp3"*/ ) );
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
@@ -50,9 +52,11 @@ public class LoadMP3 extends JPanel implements ActionListener {
 		
 		float[] samples = new float[1024];
 		
-		while( decoder.readSamples( samples ) > 0 )
-		{
-			device.writeSamples( samples );
+		try {
+			(new MP3Output(filename)).start();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
     }
     

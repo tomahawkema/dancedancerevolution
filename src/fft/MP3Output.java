@@ -9,12 +9,32 @@ import java.io.FileNotFoundException;
  * @author mzechner
  *
  */
-public class MP3Output 
+public class MP3Output extends Thread
 {
-	public static void main( String[] argv ) throws FileNotFoundException, Exception
-	{			
-		AudioDevice device = new AudioDevice( );
-		MP3Decoder decoder = new MP3Decoder( new FileInputStream( "mp3s/falling.mp3" ) );
+	private String filename;
+	
+	public MP3Output(String filename) throws Exception{	
+		this.filename = filename;
+	}
+
+	public void run() {
+		AudioDevice device = null;
+		try {
+			device = new AudioDevice( );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		MP3Decoder decoder = null;
+		try {
+			decoder = new MP3Decoder( new FileInputStream( filename ) );
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		float[] samples = new float[1024];
 		while( decoder.readSamples( samples ) > 0 )
 		{

@@ -12,13 +12,14 @@ import fft.Plot;
 
 public class Threshold 
 {
-   public static final String FILE = "mp3s/jazz.mp3";	
+   private String filename;	
    public static final int THRESHOLD_WINDOW_SIZE = 10;
    public static final float MULTIPLIER = 1.5f;
    static List<Float> peaks = new ArrayList<Float>( ); //denne er nå plutselig public
    
-   public Threshold() throws FileNotFoundException, Exception{
-      MP3Decoder decoder = new MP3Decoder( new FileInputStream( FILE  ) );							
+   public Threshold(String filename) throws FileNotFoundException, Exception{
+	  this.filename = filename;
+	  MP3Decoder decoder = new MP3Decoder( new FileInputStream( filename ) );							
       FFT fft = new FFT( 1024, 44100 );
       fft.window( FFT.HAMMING );
       float[] samples = new float[1024];
