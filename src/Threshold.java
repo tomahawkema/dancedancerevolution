@@ -85,7 +85,7 @@ public class Threshold
       
 //      plot.plot( prunnedSpectralFlux, 1, Color.blue );
 //      plot.plot( peaks, 1, Color.yellow );
-//      new PlaybackVisualizer( plot, 1024, new MP3Decoder( new FileInputStream( FILE ) ) );
+//      new PlaybackVisualizer( plot, 1024, new MP3Decoder( new FileInputStream( filename ) ) );
    }
    
    public static List<Float> getPeaks(){
