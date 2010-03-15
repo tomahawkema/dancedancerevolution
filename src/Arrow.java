@@ -17,6 +17,8 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	protected int xPos;
 	private Timer timer;
 	private int score;
+	public int pub_dir = -1;
+	protected int scalingFactor = 17;
 	//protected Timer timer;
 
 	public enum Direction{
@@ -24,6 +26,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	}
 			
 	public Arrow(int dir, int initialYposition) throws InterruptedException{
+		pub_dir = dir;
 		this.addKeyListener(this);
 		this.score = 0;		
 		try {
@@ -52,19 +55,23 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 			e.printStackTrace();
 		}
 	
-		timer = new Timer(100, this);
-		timer.setInitialDelay(5);
+		timer = new Timer(70, this);
+		timer.setInitialDelay(initialYposition*scalingFactor);
 		timer.start();
 		
 		this.setSize(100, 100);
 		this.setVisible(true);
 		this.setEnabled(true);
-		this.setLocation(xPos, initialYposition);
+		this.setLocation(xPos, 700); //her skal det stå initialYposition
 	}
 	
-	public void setYpos(int decrease){
-		this.setLocation(getLocation().x, getLocation().y-decrease);
-	}
+//	public void setYpos(int decrease){
+//		this.setLocation(getLocation().x, getLocation().y-decrease);
+//		System.out.println("HVA FAEN?");
+//		if(this.getLocation().y < 100 && getLocation().y > -100)
+//			System.out.println("hei du");
+//			this.requestFocus(); //this is a terrible way of getting focus
+//	}
 		
 	public void setFocusParameters(){
 		this.setRequestFocusEnabled(true);
@@ -75,42 +82,59 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	}
 	
 	public void paint(Graphics g) {
-		if(this.getY()<600 && this.getY()> -100)
-			System.out.println(score);
+		if(this.getLocation().y < 600 && this.getLocation().y > -100)
 			g.drawImage(arrowImage, 0, 0, null);
-		this.requestFocus(); //this is a terrible way of getting focus
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(this.getY()<600 && this.getY()> -100){
+		if(this.getLocation().y < 600 && getLocation().y > -100){
 			switch(e.getKeyCode()){
 				case KeyEvent.VK_LEFT:
-					if(getLocation().y<100){
-						score += 100-Math.abs(getLocation().y);
+					if(pub_dir == 0){
+						System.out.println("RIKTIG venstre!");
 						this.arrowImage = null;
 					}
-					else
-						score += -10;
-//					System.out.println("Trykker venstre!");
-//					System.out.println(score);
-//					System.out.println("DU TRYKKA SÅ LANGT UNNA PERFEKT: " + getY());
+					else{
+						System.out.println("FEIL venstre");
+					}
+					this.removeKeyListener(this);
 					break;
 				case KeyEvent.VK_UP:
-					this.arrowImage = null;
-					System.out.println("Trykker opp!");
+					if(pub_dir == 1){
+						System.out.println("RIKTIG opp");
+						this.arrowImage = null;
+					}
+					else{
+						System.out.println("FEIL opp");
+					}
+					this.removeKeyListener(this);
 					break;
 				case KeyEvent.VK_DOWN:
-					this.arrowImage = null;
-					System.out.println("Trykker ned!");
+					if(pub_dir == 2){
+						System.out.println("RIKTIG ned");
+						this.arrowImage = null;
+					}
+					else{
+						System.out.println("FEIL ned");
+					}
+					this.removeKeyListener(this);
 					break;
 				case KeyEvent.VK_RIGHT:
-					this.arrowImage = null;
-					System.out.println("Trykker høyre!");
+					if(pub_dir == 3){
+						System.out.println("RIKTIG høyre");
+						this.arrowImage = null;
+					}
+					else{
+						System.out.println("FEIL høyre");
+					}
+					this.removeKeyListener(this);
 					break;
 			}
-			System.out.println("Kjører denne daaa?");
-			this.removeKeyListener(this); //remove listening to this object
+			 //remove listening to this object
+		}
+		else{
+			System.out.println("INGENTING!");
 		}
 	}
 
@@ -127,10 +151,14 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		this.setLocation(getLocation().x, getLocation().y-5);
+		this.setLocation(getLocation().x, getLocation().y-2);
 		if(getLocation().y<-100){
+			this.timer.stop();
 			this.removeKeyListener(this); //remove listening to this object
 		}
+		else if(getLocation().y<100)
+			this.requestFocus(); //this is not a good way to obtain focus for an object
+		
 	}
  }
 
