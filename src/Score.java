@@ -1,20 +1,36 @@
+import javax.swing.JLayeredPane;
+import javax.swing.JTextArea;
+
 
 public class Score extends Runner{
 
-	public static int score;
+//	public static int score;
+	JLayeredPane panel = new JLayeredPane();
+	JTextArea text_score;
 	
-	int setScore(int s){
-		score += s;
-		return 0;
+	public static int score = 10;
+	
+	public Score(){
+		this.score = 0;
+		this.text_score = new JTextArea(Integer.toString(score));
+	
+		text_score.setLocation(500,220);
+		text_score.setSize(200,20);
+		
+		panel.setFocusable(false);
+		panel.setSize(800, 600);
+		panel.add(text_score);
+		Runner.getPanel().add(panel);
 	}
 	
-	public int getScore(){
-		return score;
+	public void setScore(int s){
+		score += s;
 	}
 	
 	public void run(){
 		while(true){
-			getScore();
+			System.out.println(score);
+			this.text_score.setText(Integer.toString(score));
 		}
 	}
 }
