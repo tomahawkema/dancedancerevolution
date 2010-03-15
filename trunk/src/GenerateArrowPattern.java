@@ -23,19 +23,19 @@ public class GenerateArrowPattern extends Runner {
 				maxPeak = peaks.get(i);
 		}
 		mean = mean/numberOfPeaks;
-		System.out.println("MAXPEAK is: " + maxPeak);
-		System.out.println("MEAN is: " + mean);
-		
+//		System.out.println("MAXPEAK is: " + maxPeak);
+//		System.out.println("MEAN is: " + mean);
+//		
 		
 		float weight = 0.01f;
 		mean = (maxPeak + mean)/2;
 		
-		int howMany = 100;
+		int howMany = 1000;
 		float temp = 0;
 		
 		System.out.println("NUMBEROFPEAKS: " + numberOfPeaks);
-		if(numberOfPeaks > 80){
-			while(howMany > 80){
+		if(numberOfPeaks > 220){
+			while(howMany > 120){
 				howMany = 0;
 				temp = weight*(maxPeak + mean)/2.0f;
 				for( int i = 1; i < peaks.size() - 1; i++ ){
@@ -55,7 +55,7 @@ public class GenerateArrowPattern extends Runner {
 			if(peaks.get(i)>mean && i > 200){ //her skal jeg bestemme hvor mange piler som kommer. det er passe random
 				numberOfArrows++;
 				float f = peaks.get(i);
-				Runner.getPanel().add(new Arrow((int)f%4, i*3), -1);
+				Runner.getPanel().add(new Arrow((int)f%4, i), -1);
 				Runner.getPanel().revalidate();
 			}
 		}
@@ -77,5 +77,7 @@ public class GenerateArrowPattern extends Runner {
 		
 		Runner.getPanel().add(panel);
 		Runner.getPanel().revalidate();
+		
+		new Score().setScore(10);
 	}
 }

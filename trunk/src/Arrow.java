@@ -16,9 +16,10 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	protected Image arrowImage;
 	protected int xPos;
 	private Timer timer;
-	private int score;
+//	private int score;
 	public int pub_dir = -1;
 	protected int scalingFactor = 17;
+	static Score score = new Score();
 	//protected Timer timer;
 
 	public enum Direction{
@@ -26,9 +27,10 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	}
 			
 	public Arrow(int dir, int initialYposition) throws InterruptedException{
+		
 		pub_dir = dir;
 		this.addKeyListener(this);
-		this.score = 0;		
+//		this.score = 0;		
 		try {
 			switch(dir){
 	    		case 0:
@@ -55,24 +57,17 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 			e.printStackTrace();
 		}
 	
-		timer = new Timer(70, this);
+		timer = new Timer(10, this);
 		timer.setInitialDelay(initialYposition*scalingFactor);
 		timer.start();
 		
 		this.setSize(100, 100);
 		this.setVisible(true);
 		this.setEnabled(true);
-		this.setLocation(xPos, 700); //her skal det stå initialYposition
+		this.setLocation(xPos, 600); //her skal det stå initialYposition
 	}
 	
-//	public void setYpos(int decrease){
-//		this.setLocation(getLocation().x, getLocation().y-decrease);
-//		System.out.println("HVA FAEN?");
-//		if(this.getLocation().y < 100 && getLocation().y > -100)
-//			System.out.println("hei du");
-//			this.requestFocus(); //this is a terrible way of getting focus
-//	}
-		
+	
 	public void setFocusParameters(){
 		this.setRequestFocusEnabled(true);
 		this.setFocusable(true);
@@ -82,8 +77,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	}
 	
 	public void paint(Graphics g) {
-		if(this.getLocation().y < 600 && this.getLocation().y > -100)
-			g.drawImage(arrowImage, 0, 0, null);
+		g.drawImage(arrowImage, 0, 0, null);
 	}
 
 	@Override
@@ -91,6 +85,7 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 		if(this.getLocation().y < 600 && getLocation().y > -100){
 			switch(e.getKeyCode()){
 				case KeyEvent.VK_LEFT:
+					score.setScore(10);
 					if(pub_dir == 0){
 						System.out.println("RIKTIG venstre!");
 						this.arrowImage = null;
@@ -131,7 +126,6 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 					this.removeKeyListener(this);
 					break;
 			}
-			 //remove listening to this object
 		}
 		else{
 			System.out.println("INGENTING!");
@@ -151,14 +145,13 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		this.setLocation(getLocation().x, getLocation().y-2);
+		this.setLocation(getLocation().x, getLocation().y-4);
 		if(getLocation().y<-100){
 			this.timer.stop();
 			this.removeKeyListener(this); //remove listening to this object
 		}
-		else if(getLocation().y<100)
+		else if(getLocation().y<50)
 			this.requestFocus(); //this is not a good way to obtain focus for an object
-		
 	}
  }
 
