@@ -34,7 +34,7 @@ public class GenerateArrowPattern extends Runner {
 		
 		System.out.println("NUMBEROFPEAKS: " + numberOfPeaks);
 		if(numberOfPeaks > 220){
-			while(howMany > 120){
+			while(howMany > 120){ //
 				howMany = 0;
 				temp = weight*(maxPeak + mean)/2.0f;
 				for( int i = 1; i < peaks.size() - 1; i++ ){

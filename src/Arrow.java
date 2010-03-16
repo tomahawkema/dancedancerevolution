@@ -17,16 +17,12 @@ public class Arrow extends JLayeredPane implements ActionListener{
 	protected int scalingFactor = 25;
 	boolean notAdded = true;
 
-	public enum Direction{
-		LEFT, UP, DOWN, RIGHT
-	}
-				
-	public Arrow(int dir, int initialYposition) throws InterruptedException{
-		pub_dir = dir;
+	public Arrow(int direction, int initialDelay) throws InterruptedException{
+		pub_dir = direction;
 		Runner.getPanel().requestFocus();
 		this.setFocusable(false);	
 		try {
-			switch(dir){
+			switch(direction){
 	    		case 0:
 	    			arrowImage =ImageIO.read(new File("images/left_purple.png"));
 	    			xPos = 0;
@@ -52,7 +48,7 @@ public class Arrow extends JLayeredPane implements ActionListener{
 		}
 	
 		timer = new Timer(10, this);
-		timer.setInitialDelay(initialYposition*scalingFactor);
+		timer.setInitialDelay(initialDelay*scalingFactor);
 		timer.start();
 		
 		this.setSize(100, 100);
