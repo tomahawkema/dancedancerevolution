@@ -14,7 +14,7 @@ public class Arrow extends JLayeredPane implements ActionListener{
 	protected int xPos;
 	private Timer timer;
 	public int pub_dir = -1;
-	protected int scalingFactor = 25;
+	protected int scalingFactor = 20; // this is a sync. variable  
 	boolean notAdded = true;
 
 	public Arrow(int direction, int initialDelay) throws InterruptedException{
@@ -47,7 +47,7 @@ public class Arrow extends JLayeredPane implements ActionListener{
 			e.printStackTrace();
 		}
 	
-		timer = new Timer(10, this);
+		timer = new Timer(15, this); // this is a sync. variable 
 		timer.setInitialDelay(initialDelay*scalingFactor);
 		timer.start();
 		
