@@ -24,19 +24,15 @@ public class ComboImage extends JLayeredPane{
 		this.setSize(800, 600);
 		this.setVisible(true);
 		this.setEnabled(true);
-		this.setLocation(440, 450);
+		this.setLocation(450, 450);
 	}
 	
-	public int getComboFromFile(int fjas){
-		return fjas;
-	}
-
 	public void paint(Graphics g) {
-		if(CreateGUI.score.getCombo()>19)
+		if(CreateGUI.score.getCombo()>20)
 			g.drawImage(insane, 0, 0, null);
-		else if(CreateGUI.score.getCombo()>9)
+		else if(CreateGUI.score.getCombo()>10)
 			g.drawImage(sick, 0, 0, null);
-		else if(CreateGUI.score.getCombo()>-1)
+		else if(CreateGUI.score.getCombo()>5)
 			g.drawImage(perfect, 0, 0, null);
 		g.drawImage(null, 0, 0, null);
 	}
