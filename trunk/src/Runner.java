@@ -7,9 +7,7 @@ import java.awt.event.KeyListener;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
 import javax.swing.JLayeredPane;
-import javax.swing.JTextArea;
 import javax.swing.Timer;
 
 public class Runner extends Thread implements KeyListener, ActionListener{
@@ -20,45 +18,40 @@ public class Runner extends Thread implements KeyListener, ActionListener{
 	
 	public static CreateGUI gui;
 	public static JLayeredPane panel;
-	private Timer timer;
-	protected Image bonusArrow = null;
+	protected Image perfect;
+	protected Image sick;
+	protected Image insane;
+	protected Image current;
+	
+	
 	
 	public void run(){
 		try {
+			perfect = ImageIO.read(new File("images/perfect.png"));
+			sick = ImageIO.read(new File("images/sick.png"));
+			insane = ImageIO.read(new File("images/201b.png"));
+			
 			gui = new CreateGUI();
 			gui.setFocusable(false);
 			
 			panel = new JLayeredPane();
 			panel.setFocusable(true);
 			panel.requestFocus();
+			panel.setSize(800, 600);
 			
-//			int score = new Score().getScore();
-//			String s = Integer.toString(score);
-//			JTextArea text = new JTextArea(s);
-//			text.setLocation(500,200);
-//			text.setSize(200,20);
-
 			LoadMP3 load = new LoadMP3();
 			load.setLocation(500,260);
 			load.setSize(200,20);
+//			load.revalidate();
 			
 			panel.add(new Background(), new Integer(-1));
-//			panel.add(text);
 			panel.add(load);
-//			panel.add(knapp);
-			panel.setSize(800, 600);
 			panel.addKeyListener(this);
-
-			
-//			knapp.revalidate();
-			load.revalidate();
-//			text.revalidate();
-			
-			gui.getContentPane().add(panel);
 		
-	
+			load.revalidate();
+			gui.getContentPane().add(panel);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -66,19 +59,19 @@ public class Runner extends Thread implements KeyListener, ActionListener{
 		return panel;
 	}
 	
-	
-	
-	@Override
+
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()){
 			case KeyEvent.VK_LEFT:
 				int a = CreateGUI.arrowlistener.findArrow(0);
 				if(a != -1){
-					timer = new Timer(10, null);
-					timer.setInitialDelay(10);
-					timer.start();
 					CreateGUI.score.setScore(100);
 					CreateGUI.arrowlistener.removeArrow(a);
+					CreateGUI.score.setCombo(CreateGUI.score.getCombo()+6);
+				}
+				else{
+					CreateGUI.score.setCombo(0);
+					CreateGUI.score.setScore(-20);
 				}
 				break;
 			
@@ -87,6 +80,11 @@ public class Runner extends Thread implements KeyListener, ActionListener{
 				if(b != -1){
 					CreateGUI.score.setScore(100);
 					CreateGUI.arrowlistener.removeArrow(b);
+					CreateGUI.score.setCombo(CreateGUI.score.getCombo()+6);
+				}
+				else{
+					CreateGUI.score.setCombo(0);
+					CreateGUI.score.setScore(-20);
 				}
 				break;
 					
@@ -95,8 +93,12 @@ public class Runner extends Thread implements KeyListener, ActionListener{
 				if(c != -1){
 					CreateGUI.score.setScore(100);
 					CreateGUI.arrowlistener.removeArrow(c);
+					CreateGUI.score.setCombo(CreateGUI.score.getCombo()+6);
 				}
-				CreateGUI.score.setScore(-1000);
+				else{
+					CreateGUI.score.setCombo(0);
+					CreateGUI.score.setScore(-20);
+				}
 				break;
 			
 			case KeyEvent.VK_RIGHT:
@@ -104,26 +106,33 @@ public class Runner extends Thread implements KeyListener, ActionListener{
 				if(d != -1){
 					CreateGUI.score.setScore(100);
 					CreateGUI.arrowlistener.removeArrow(d);
+					CreateGUI.score.setCombo(CreateGUI.score.getCombo()+6);
+				}
+				else{
+					CreateGUI.score.setCombo(0);
+					CreateGUI.score.setScore(-20);
 				}
 				break;
 		}
 	}
 		
-
-	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	}
+	
+	public void paint(Graphics g) {
+		if(CreateGUI.score.getCombo()>20)
+			g.drawImage(perfect, 0, 0, null);
+		else if(CreateGUI.score.getCombo()>10)
+			g.drawImage(sick, 0, 0, null);
+		else if(CreateGUI.score.getCombo()>5)
+			g.drawImage(insane, 0, 0, null);
+		else
+			g.drawImage(insane, 0, 0, null);
 	}
 }
