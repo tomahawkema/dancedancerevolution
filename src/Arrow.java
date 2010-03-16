@@ -14,7 +14,7 @@ public class Arrow extends JLayeredPane implements ActionListener{
 	protected int xPos;
 	private Timer timer;
 	public int pub_dir = -1;
-	protected int scalingFactor = 17;
+	protected int scalingFactor = 25;
 	boolean notAdded = true;
 
 	public enum Direction{
@@ -28,19 +28,19 @@ public class Arrow extends JLayeredPane implements ActionListener{
 		try {
 			switch(dir){
 	    		case 0:
-	    			arrowImage =ImageIO.read(new File("images/arrow_left_trans.png"));
+	    			arrowImage =ImageIO.read(new File("images/left_purple.png"));
 	    			xPos = 0;
 	    			break;
 	    		case 1:
-	    			arrowImage =ImageIO.read(new File("images/arrow_up_trans.png"));
+	    			arrowImage =ImageIO.read(new File("images/up_purple.png"));
 	    			xPos = 100;
 	    			break;
 	    		case 2:
-	    			arrowImage =ImageIO.read(new File("images/arrow_down_trans.png"));
+	    			arrowImage =ImageIO.read(new File("images/down_purple.png"));
 	    			xPos = 200;
 	    			break;
 	    		case 3:
-	    			arrowImage =ImageIO.read(new File("images/arrow_right_trans.png"));
+	    			arrowImage =ImageIO.read(new File("images/right_purple.png"));
 	    			xPos = 300;
 	    			break;
 	    		default:
@@ -70,12 +70,13 @@ public class Arrow extends JLayeredPane implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		this.setLocation(getLocation().x, getLocation().y-3);
+		this.setLocation(getLocation().x, getLocation().y-2);
 		if(getLocation().y<-100){
 			int a = CreateGUI.arrowlistener.findArrow(this.pub_dir);
 			if(a != -1){
 				CreateGUI.score.setScore(-5);
 				CreateGUI.arrowlistener.removeArrow(a);
+				CreateGUI.score.setCombo(0);
 			}
 			this.timer.stop();
 		}
