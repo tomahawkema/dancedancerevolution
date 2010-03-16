@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 public class CreateGUI extends JFrame{
 	
 	private Container cp;
+	public static ArrowListener arrowlistener;
+	public static Score score;
 		
 	public CreateGUI(){
 		this.setFocusable(false);
@@ -24,5 +26,7 @@ public class CreateGUI extends JFrame{
 		this.setResizable(false);
 		cp = getContentPane();
 		cp.setBackground(Color.black);
+		arrowlistener = new ArrowListener();
+		score = new Score();
 	}
 }
