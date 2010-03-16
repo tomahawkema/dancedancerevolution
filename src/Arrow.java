@@ -11,26 +11,24 @@ import javax.imageio.ImageIO;
 import javax.swing.JLayeredPane;
 import javax.swing.Timer;
 
-public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
+public class Arrow extends JLayeredPane implements ActionListener{
 	
 	protected Image arrowImage;
 	protected int xPos;
 	private Timer timer;
-//	private int score;
 	public int pub_dir = -1;
 	protected int scalingFactor = 17;
-	static Score score = new Score();
+	boolean notAdded = true;
 	//protected Timer timer;
 
 	public enum Direction{
 		LEFT, UP, DOWN, RIGHT
 	}
-			
+				
 	public Arrow(int dir, int initialYposition) throws InterruptedException{
-		
 		pub_dir = dir;
-		this.addKeyListener(this);
-//		this.score = 0;		
+		Runner.getPanel().requestFocus();
+		this.setFocusable(false);	
 		try {
 			switch(dir){
 	    		case 0:
@@ -67,22 +65,26 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 		this.setLocation(xPos, 600); //her skal det stå initialYposition
 	}
 	
-	
-	public void setFocusParameters(){
-		this.setRequestFocusEnabled(true);
-		this.setFocusable(true);
-		this.addKeyListener(this);
-		this.requestFocus();
-		this.requestFocusInWindow();
+	public int getDir(){
+		return this.pub_dir;
 	}
+		
+//	public void setFocusParameters(){
+//		this.setRequestFocusEnabled(true);
+//		this.setFocusable(true);
+////		this.addKeyListener(this);
+//		this.requestFocus();
+//		this.requestFocusInWindow();
+//	}
 	
 	public void paint(Graphics g) {
 		g.drawImage(arrowImage, 0, 0, null);
+		System.out.println(CreateGUI.score.score);
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if(this.getLocation().y < 600 && getLocation().y > -100){
+//	@Override
+//	public void keyPressed(KeyEvent e) {
+	/*	if(this.getLocation().y < 600 && getLocation().y > -100){
 			switch(e.getKeyCode()){
 				case KeyEvent.VK_LEFT:
 					score.setScore(10);
@@ -129,29 +131,38 @@ public class Arrow extends JLayeredPane implements KeyListener, ActionListener{
 		}
 		else{
 			System.out.println("INGENTING!");
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-	}
-
+		}*/
+//	}
+//
+//	@Override
+//	public void keyReleased(KeyEvent arg0) {
+//		// TODO Auto-generated method stub
+//	}
+//
+//	@Override
+//	public void keyTyped(KeyEvent arg0) {
+//		// TODO Auto-generated method stub
+//	}
+//
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		this.setLocation(getLocation().x, getLocation().y-4);
 		if(getLocation().y<-100){
+			int a = CreateGUI.arrowlistener.findArrow(this.pub_dir);
+			if(a != -1){
+				CreateGUI.score.setScore(-1);
+				CreateGUI.arrowlistener.removeArrow(a);
+			}
 			this.timer.stop();
-			this.removeKeyListener(this); //remove listening to this object
+//			this.removeKeyListener(this); //remove listening to this object
 		}
-		else if(getLocation().y<50)
-			this.requestFocus(); //this is not a good way to obtain focus for an object
+		else if(getLocation().y<50 && notAdded){
+			CreateGUI.arrowlistener.addArrow(this.pub_dir);
+			notAdded = false;
+		}
+//			System.out.println("");
+//			this.requestFocus(); //this is not a good way to obtain focus for an object
 	}
  }
 

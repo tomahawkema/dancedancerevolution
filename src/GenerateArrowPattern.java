@@ -7,7 +7,9 @@ import javax.swing.JTextArea;
 
 public class GenerateArrowPattern extends Runner {
 
-	private JLayeredPane panel;
+	private static JLayeredPane panel;
+	
+	public static JTextArea text_highscore;
 	
 	public GenerateArrowPattern(String filename) throws FileNotFoundException, Exception{
 		List<Float> peaks = new Threshold(filename).getPeaks();
@@ -60,6 +62,11 @@ public class GenerateArrowPattern extends Runner {
 			}
 		}
 		
+		text_highscore = new JTextArea("Good luck!");
+		text_highscore.setEditable(false);
+		text_highscore.setLocation(500,220);
+		text_highscore.setSize(200,20);
+		
 		String number = Integer.toString(numberOfArrows);
 		JTextArea text_numberOfArrow = new JTextArea("Number of arrows in this song: " + number);
 		text_numberOfArrow.setLocation(500,300);
@@ -72,12 +79,11 @@ public class GenerateArrowPattern extends Runner {
 		panel = new JLayeredPane();
 		panel.setFocusable(false);
 		panel.setSize(800, 600);
+		panel.add(text_highscore);
 		panel.add(text_numberOfArrow);
 		panel.add(text_songPlaying);
 		
 		Runner.getPanel().add(panel);
 		Runner.getPanel().revalidate();
-		
-		new Score().setScore(10);
 	}
 }

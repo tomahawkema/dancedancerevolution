@@ -49,6 +49,7 @@ public class LoadMP3 extends JPanel implements ActionListener{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+//		openButton.disable();
 		
 		float[] samples = new float[1024];
 		
