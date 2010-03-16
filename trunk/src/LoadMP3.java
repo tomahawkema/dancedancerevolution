@@ -20,7 +20,7 @@ public class LoadMP3 extends JPanel implements ActionListener{
       
         fc = new JFileChooser();
         fc.setFileFilter(new FilterFiles());
-        openButton = new JButton("Find mp3...");
+        openButton = new JButton("Select mp3 and Play");
         openButton.addActionListener(this);
 
         JLayeredPane mp3panel = new JLayeredPane(); //use FlowLayout
@@ -30,7 +30,7 @@ public class LoadMP3 extends JPanel implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
-        int returnVal = fc.showOpenDialog(LoadMP3.this);
+    	int returnVal = fc.showOpenDialog(LoadMP3.this);
         File file = fc.getSelectedFile();
         try {
 			filename = fc.getCurrentDirectory().getCanonicalPath();
