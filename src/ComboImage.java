@@ -14,7 +14,7 @@ public class ComboImage extends JLayeredPane{
 	protected Image sick;
 	protected Image insane;
 	
-	public ComboImage(int combo) throws IOException{
+	public ComboImage() throws IOException{
 		current = null;
 		insane = ImageIO.read(new File("images/201b.png"));
 		sick = ImageIO.read(new File("images/sick.png"));
@@ -25,6 +25,10 @@ public class ComboImage extends JLayeredPane{
 		this.setVisible(true);
 		this.setEnabled(true);
 		this.setLocation(440, 450);
+	}
+	
+	public int getComboFromFile(int fjas){
+		return fjas;
 	}
 
 	public void paint(Graphics g) {
