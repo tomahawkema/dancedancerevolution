@@ -29,7 +29,6 @@ public class Threshold
       List<Float> spectralFlux = new ArrayList<Float>( );
       List<Float> threshold = new ArrayList<Float>( );
       List<Float> prunnedSpectralFlux = new ArrayList<Float>( );
-      //peaks stod her
  
       while( decoder.readSamples( samples ) > 0 )
       {			
@@ -71,21 +70,7 @@ public class Threshold
             peaks.add( prunnedSpectralFlux.get(i) );
          else
             peaks.add( (float)0 );
-         if(peaks.get(i) != 0.0)
-        	 System.out.println("PEAKS FRA THRESHOLD: " + peaks.get(i));
       }
-      System.out.println("PEAKS SIZE I RUNNER: " + peaks.size());
-   
-//      Plot plot = new Plot( "Spectral Flux", 1024, 512 );
-//      plot.plot( spectralFlux, 1, Color.red );		
-//      plot.plot( threshold, 1, Color.green ) ;
-      
-//      for( int i = 0; i < prunnedSpectralFlux.size() - 1; i++ )
-//    	  System.out.println(peaks.get(i));
-      
-//      plot.plot( prunnedSpectralFlux, 1, Color.blue );
-//      plot.plot( peaks, 1, Color.yellow );
-//      new PlaybackVisualizer( plot, 1024, new MP3Decoder( new FileInputStream( filename ) ) );
    }
    
    public static List<Float> getPeaks(){
