@@ -70,7 +70,7 @@ public class Arrow extends JLayeredPane implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		this.setLocation(getLocation().x, getLocation().y-4);
+		this.setLocation(getLocation().x, getLocation().y-3);
 		if(getLocation().y<-100){
 			int a = CreateGUI.arrowlistener.findArrow(this.pub_dir);
 			if(a != -1){
@@ -79,7 +79,7 @@ public class Arrow extends JLayeredPane implements ActionListener{
 			}
 			this.timer.stop();
 		}
-		else if(getLocation().y<50 && notAdded){
+		else if(getLocation().y<100 && notAdded){
 			CreateGUI.arrowlistener.addArrow(this.pub_dir);
 			notAdded = false;
 		}
