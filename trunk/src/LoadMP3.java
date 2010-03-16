@@ -38,26 +38,19 @@ public class LoadMP3 extends JPanel implements ActionListener{
 			e1.printStackTrace();
 		}
         filename = filename + "\\" + file.getName();
-        System.out.println(filename);
         AudioDevice device = null;
         MP3Decoder decoder = null;
         try {
 			device = new AudioDevice();
 			new GenerateArrowPattern(filename);
-			decoder = new MP3Decoder(new FileInputStream( filename /*"mp3s/jazz.mp3"*/ ) );
+			decoder = new MP3Decoder(new FileInputStream( filename ) );
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-//		openButton.disable();
-		
-		float[] samples = new float[1024];
-		
-		//TRYING TO LOAD THE MP3 HERE!
+	
 		try {
 			(new MP3Output(filename)).start();
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
     }
