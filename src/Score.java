@@ -1,12 +1,12 @@
 import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
-
-public class Score extends Runner{
+public class Score{
 
 	JLayeredPane panel = new JLayeredPane();
 	JTextArea text_score;
 	
+	public static int combo = 0;
 	public static int score = 20;
 	
 	public Score(){
@@ -30,10 +30,12 @@ public class Score extends Runner{
 		return score;
 	}
 	
+	public void setCombo(int c){
+		combo = c;
+		GenerateArrowPattern.text_combo.setText("Combo: " + Integer.toString(combo));
+	}
 	
-	public void run(){
-		while(true){
-			this.text_score.setText(Integer.toString(score));
-		}
+	public int getCombo(){
+		return combo;
 	}
 }

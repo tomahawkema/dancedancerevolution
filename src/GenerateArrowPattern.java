@@ -4,12 +4,12 @@ import java.util.List;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 
-
 public class GenerateArrowPattern extends Runner {
 
 	private static JLayeredPane panel;
 	
 	public static JTextArea text_highscore;
+	public static JTextArea text_combo;
 	
 	public GenerateArrowPattern(String filename) throws FileNotFoundException, Exception{
 		List<Float> peaks = new Threshold(filename).getPeaks();
@@ -25,10 +25,7 @@ public class GenerateArrowPattern extends Runner {
 				maxPeak = peaks.get(i);
 		}
 		mean = mean/numberOfPeaks;
-//		System.out.println("MAXPEAK is: " + maxPeak);
-//		System.out.println("MEAN is: " + mean);
-//		
-		
+	
 		float weight = 0.01f;
 		mean = (maxPeak + mean)/2;
 		
@@ -54,7 +51,7 @@ public class GenerateArrowPattern extends Runner {
 		
 		int numberOfArrows = 0;
 		for( int i = 1; i < peaks.size() - 1; i++ ){
-			if(peaks.get(i)>mean && i > 200){ //her skal jeg bestemme hvor mange piler som kommer. det er passe random
+			if(peaks.get(i)>mean && i > 200){
 				numberOfArrows++;
 				float f = peaks.get(i);
 				Runner.getPanel().add(new Arrow((int)f%4, i), -1);
@@ -64,8 +61,13 @@ public class GenerateArrowPattern extends Runner {
 		
 		text_highscore = new JTextArea("Good luck!");
 		text_highscore.setEditable(false);
-		text_highscore.setLocation(500,220);
+		text_highscore.setLocation(500,180);
 		text_highscore.setSize(200,20);
+		
+		text_combo = new JTextArea("Combos");
+		text_combo.setEditable(false);
+		text_combo.setLocation(500,220);
+		text_combo.setSize(200,20);
 		
 		String number = Integer.toString(numberOfArrows);
 		JTextArea text_numberOfArrow = new JTextArea("Number of arrows in this song: " + number);
@@ -79,6 +81,7 @@ public class GenerateArrowPattern extends Runner {
 		panel = new JLayeredPane();
 		panel.setFocusable(false);
 		panel.setSize(800, 600);
+		panel.add(text_combo);
 		panel.add(text_highscore);
 		panel.add(text_numberOfArrow);
 		panel.add(text_songPlaying);
