@@ -14,7 +14,7 @@ public class Background extends JLayeredPane {
 	
 	public Background(){
 		try {
-			this.back = ImageIO.read(new File("images/background.png"));
+			this.back = ImageIO.read(new File("images/back.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

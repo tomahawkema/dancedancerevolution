@@ -54,29 +54,29 @@ public class GenerateArrowPattern extends Runner {
 			if(peaks.get(i)>mean && i > 200){
 				numberOfArrows++;
 				float f = peaks.get(i);
-				Runner.getPanel().add(new Arrow((int)f%4, i), -1);
+				Runner.getPanel().add(new Arrow((int)f%4, i), 5);
 				Runner.getPanel().revalidate();
 			}
 		}
 		
 		text_highscore = new JTextArea("Good luck!");
 		text_highscore.setEditable(false);
-		text_highscore.setLocation(500,180);
+		text_highscore.setLocation(500,300);
 		text_highscore.setSize(200,20);
 		
 		text_combo = new JTextArea("Combos");
 		text_combo.setEditable(false);
-		text_combo.setLocation(500,220);
+		text_combo.setLocation(500,340);
 		text_combo.setSize(200,20);
 		
 		String number = Integer.toString(numberOfArrows);
-		JTextArea text_numberOfArrow = new JTextArea("Number of arrows in this song: " + number);
-		text_numberOfArrow.setLocation(500,300);
-		text_numberOfArrow.setSize(200,20);
+		JTextArea text_numberOfArrow = new JTextArea("Number of arrows generated: " + number);
+		text_numberOfArrow.setLocation(450,400);
+		text_numberOfArrow.setSize(300,20);
 				
-		JTextArea text_songPlaying = new JTextArea(filename.substring(filename.lastIndexOf("\\")+1, filename.lastIndexOf(".")).trim());
-		text_songPlaying.setLocation(500,340);
-		text_songPlaying.setSize(200,20);
+		JTextArea text_songPlaying = new JTextArea("Now playing: " + filename.substring(filename.lastIndexOf("\\")+1, filename.lastIndexOf(".")).trim());
+		text_songPlaying.setLocation(450,440);
+		text_songPlaying.setSize(300,20);
 		
 		panel = new JLayeredPane();
 		panel.setFocusable(false);
