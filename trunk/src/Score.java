@@ -35,12 +35,7 @@ public class Score{
 	public void setCombo(int c){
 		combo = c;
 		GenerateArrowPattern.text_combo.setText("Combo: " + Integer.toString(combo));
-		try {
-			Runner.getPanel().add(new ComboImage(CreateGUI.score.getCombo()), new Integer(400));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Runner.getPanel().add(CreateGUI.combo, new Integer(400));
 	}
 	
 	public int getCombo(){

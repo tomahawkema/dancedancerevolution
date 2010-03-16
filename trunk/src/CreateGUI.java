@@ -30,7 +30,6 @@ public class CreateGUI extends JFrame{
 		cp.setBackground(Color.black);
 		arrowlistener = new ArrowListener();
 		score = new Score();
-		combo = new ComboImage(0);
-		
+		combo = new ComboImage();
 	}
 }
