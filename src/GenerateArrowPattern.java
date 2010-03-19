@@ -96,14 +96,16 @@ public class GenerateArrowPattern extends Runner {
 		text_numberOfArrow.setLocation(450,400);
 		text_numberOfArrow.setSize(300,20);
 		
-		/////////////////////////////////////////
 		/////////////////////////////////////////	
 		//////////////////OBS!///////////////////
 		/////////////////////////////////////////
-		/////////////////////////////////////////
 		
-		//Not sure if this works for other OS's then Windows! Sorry for any inconvenience!
-		JTextArea text_songPlaying = new JTextArea("Now playing: " + filename.substring(filename.lastIndexOf("\\")+1, filename.lastIndexOf(".")).trim());
+		//Haven't added the opportunity for not having the absolute path in others os's then windows
+		
+		if (System.getProperty("os.name").toLowerCase().matches("(?i).*windows.*"))
+			filename = filename.substring(filename.lastIndexOf("\\")+1, filename.lastIndexOf(".")).trim();
+		
+		JTextArea text_songPlaying = new JTextArea("Now playing: " + filename);
 		text_songPlaying.setLocation(450,440);
 		text_songPlaying.setSize(300,20);
 		
