@@ -11,7 +11,7 @@ import javax.swing.Timer;
 /**
  * This class generates arrows and add them to a JLayeredPane.
  * 
- * @author tormariu
+ * @author Tor Marius Jensen
  */
 
 

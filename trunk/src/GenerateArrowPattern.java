@@ -11,7 +11,9 @@ import javax.swing.JTextArea;
 
 /**
  * Generates an arrow pattern from a loaded mp3. This is being called static, so once the mp3 is loaded,
- * text areas with information about score, combo and the song being played are also added. 
+ * text areas with information about score, combo and the song being played are also added.
+ * 
+ * @author Tor Marius Jensen
  */
 public class GenerateArrowPattern extends Runner {
 
