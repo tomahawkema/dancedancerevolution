@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 /**
  * Simple example that shows how to decode an mp3 file.
  * 
- * @author mzechner
+ * @author mzechner and Tor Marius Jensen
  *
  */
 public class MP3Output extends Thread

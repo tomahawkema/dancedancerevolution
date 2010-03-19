@@ -5,9 +5,18 @@ import java.awt.event.KeyListener;
 
 
 import javax.swing.JLayeredPane;
-
+/**
+ * The class that starts the program. This also listen to key inputs from user and responds to that.
+ * Creates the panel where the initial widgets are being added.
+ * 
+ * @author Tor Marius Jensen
+ */
 public class Runner extends Thread implements KeyListener, ActionListener{
 
+	/**
+	 * Executing the program.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		(new Thread(new Runner())).start();
 	}
@@ -15,6 +24,10 @@ public class Runner extends Thread implements KeyListener, ActionListener{
 	public static CreateGUI gui;
 	public static JLayeredPane panel;
 
+	/**
+	 * Initializing the static variable gui and sets its properties and also adding the static variable
+	 * panel and adding its initial widgets. Adding keylistener as well. 
+	 */
 	public void run(){
 		try {
 			gui = new CreateGUI();
@@ -40,23 +53,31 @@ public class Runner extends Thread implements KeyListener, ActionListener{
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Returns the panel.
+	 * @return the panel where other components can be added in addition
+	 */
 	public static JLayeredPane getPanel(){
 		return panel;
 	}
 	
-
+	/**
+	 * Listening to the keys being pressed. Depending on the key that's pressed, different actions
+	 * will take place.
+	 */
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()){
 			case KeyEvent.VK_LEFT:
-				int a = CreateGUI.arrowlistener.findArrow(0);
+				int a = CreateGUI.arrowlistener.findArrow(0); //checks if a arrow of this type is present at the top of the screen
 				if(a != -1){
-					CreateGUI.score.setScore(100);
-					CreateGUI.arrowlistener.removeArrow(a);
-					CreateGUI.score.setCombo(CreateGUI.score.getCombo()+1);
+					CreateGUI.score.setScore(100); //if arrow is present: add 100 to score
+					CreateGUI.arrowlistener.removeArrow(a); //remove arrow from arrowlist
+					CreateGUI.score.setCombo(CreateGUI.score.getCombo()+1); //add 1 to the combo
 				}
 				else{
-					CreateGUI.score.setCombo(0);
-					CreateGUI.score.setScore(-20);
+					CreateGUI.score.setCombo(0); //if arrow isn't present: setting combo to 0
+					CreateGUI.score.setScore(-20); // subtract 20 from the score
 				}
 				break;
 			

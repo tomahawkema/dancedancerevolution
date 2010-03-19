@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+// Should maybe have taken use of the multibandthreshold to get better results of the beat detection.
+
 public class MultiBandThreshold 
 
 {
