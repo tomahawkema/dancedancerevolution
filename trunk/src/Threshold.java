@@ -1,5 +1,3 @@
-
-import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -7,8 +5,13 @@ import java.util.List;
 
 import fft.FFT;
 import fft.MP3Decoder;
-import fft.PlaybackVisualizer;
-import fft.Plot;
+
+/**
+ * This class calls the mp3 decoder with the mp3 as an input and generates samples out of it.
+ * Adds these samples to an arraylist.
+ * 
+ * @author Tor Marius Jensen and Damien Di Fede
+ */
 
 public class Threshold 
 {
@@ -17,6 +20,14 @@ public class Threshold
    public static final float MULTIPLIER = 1.5f;
    static List<Float> peaks = new ArrayList<Float>( ); //denne er nå plutselig public
    
+   /**
+    * Constructor calls the mp3 decoder do decode the mp3 file and generating samples out it. Filtering
+    * out samples of interest. 
+    * 
+    * @param filename the path of the mp3 file
+    * @throws FileNotFoundException
+    * @throws Exception
+    */
    public Threshold(String filename) throws FileNotFoundException, Exception{
 	  this.filename = filename;
 	  MP3Decoder decoder = new MP3Decoder( new FileInputStream( filename ) );							
@@ -72,7 +83,11 @@ public class Threshold
             peaks.add( (float)0 );
       }
    }
-   
+
+   /**
+    * Return the list of peaks generated from the mp3
+    * @return the list of peaks
+    */
    public static List<Float> getPeaks(){
 	   return peaks;	   
    }

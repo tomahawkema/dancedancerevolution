@@ -24,7 +24,7 @@ import org.tritonus.share.sampled.FloatSampleBuffer;
 import org.tritonus.share.sampled.file.TAudioFileReader;
 
 /**
- * Another mp3 decoder. I got a suspicion that the other one sucks a bit :/
+ * Mp3 decoder. I got a suspicion that the other one sucks a bit :/
  * @author mzechner
  *
  */
