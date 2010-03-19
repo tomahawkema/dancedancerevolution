@@ -9,6 +9,8 @@ import javax.swing.JLayeredPane;
  * The class that starts the program. This also listen to key inputs from user and responds to that.
  * Creates the panel where the initial widgets are being added.
  * 
+ * @see <a href="http://code.google.com/p/dancedancerevolution/source/checkout">Dance Dance Revolution - 201B edition</a>
+ * 
  * @author Tor Marius Jensen
  */
 public class Runner extends Thread implements KeyListener, ActionListener{
