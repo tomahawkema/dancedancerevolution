@@ -8,7 +8,6 @@ import fft.MP3Output;
 /**
  * This class creates the add-mp3 button and calls GenerateArrowPattern and MP3Output once called.
  * 
- * 
  * @author Tor Marius Jensen and Damien Di Fede
  */
 
